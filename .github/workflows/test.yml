@@ -33,9 +33,8 @@ jobs:
         run: cmake ../apngasm
       - name: "Run cmake on OS-X:"
         if: ${{ matrix.os == 'macos-latest' }}
-        env:
-          LDFLAGS: -L/usr/local/opt/icu4c/lib
-          CPPFLAGS: -I/usr/local/opt/icu4c/include
-        run: cmake ../apngasm
+        run: |
+          export ICU_ROOT=$(brew --prefix icu4c)
+          cmake ../apngasm
       - name: "Run make:"
         run: make
