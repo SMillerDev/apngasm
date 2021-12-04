@@ -80,6 +80,13 @@ message(${PNG_VERSION_STRING})
 target_link_libraries(${APNGASM_DYNAMIC_LIB_TARGET} ${ZLIB_LIBRARIES})
 target_link_libraries(${APNGASM_STATIC_LIB_TARGET} ${ZLIB_LIBRARIES})
 
+find_package(ICU COMPONENTS data REQUIRED)
+
+include_directories(${ICU_INCLUDE_DIRS})
+
+target_link_libraries(${APNGASM_DYNAMIC_LIB_TARGET} ${ICU_LIBRARIES})
+target_link_libraries(${APNGASM_STATIC_LIB_TARGET} ${ICU_LIBRARIES})
+
 #if (APPLE OR WIN32)
 #    set(Boost_USE_STATIC_LIBS ON)
 #endif ()
